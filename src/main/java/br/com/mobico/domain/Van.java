@@ -35,13 +35,13 @@ public class Van implements Serializable {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String color;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String model;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String plate;
 	
 	@Column(nullable=false)

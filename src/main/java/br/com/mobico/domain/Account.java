@@ -44,10 +44,10 @@ public class Account implements Serializable {
 	@Column(name="created_at", nullable=false)
 	private Date createdAt;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String email;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String password;
 	
 	//bi-directional one-to-one association to Profile

@@ -38,10 +38,10 @@ public class Locality implements Serializable {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String name;
 	
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String address;
 
 	private Boolean active;

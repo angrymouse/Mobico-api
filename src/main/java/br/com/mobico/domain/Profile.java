@@ -38,13 +38,13 @@ public class Profile implements Serializable {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 	
-	@Column(length=2147483647)
+	@Column(length=1000)
 	private String cnh;
 
 	@Column(name="cnh_valid")
 	private Boolean cnhValid;
 
-	@Column(length=2147483647)
+	@Column(length=1000)
 	private String cpf;
 
 	@Column(name="\"cpfValid\"")
@@ -54,16 +54,16 @@ public class Profile implements Serializable {
 	@Column(name="date_of_birth", nullable=false)
 	private Date dateOfBirth;
 
-	@Column(name="first_name", nullable=false, length=2147483647)
+	@Column(name="first_name", nullable=false, length=1000)
 	private String firstName;
 
-	@Column(name="\"lastName\"", nullable=false, length=2147483647)
+	@Column(name="\"lastName\"", nullable=false, length=1000)
 	private String lastName;
 
-	@Column(nullable=false, length=2147483647)
+	@Column(nullable=false, length=1000)
 	private String phone;
 
-	@Column(length=2147483647)
+	@Column(length=1000)
 	private String rg;
 
 	@Column(name="\"rgValid\"")

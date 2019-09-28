@@ -11,19 +11,15 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class CreateRideRequest   {
   @JsonProperty("origin")
-  @NotNull
-  private Integer origin = null;
+  private Integer origin;
 
   @JsonProperty("destination")
-  @NotNull
-  private Integer destination = null;
+  private Integer destination;
 
   @JsonProperty("vacancies")
-  @NotNull
-  private Integer vacancies = null;
+  private Integer vacancies;
 
   @JsonProperty("originDescription")
-  @NotNull
   private String originDescription = null;
 
   public Integer getOrigin() {
@@ -34,6 +30,7 @@ public class CreateRideRequest   {
     this.origin = origin;
   }
 
+  @NotNull
   public Integer getDestination() {
     return destination;
   }
@@ -42,6 +39,7 @@ public class CreateRideRequest   {
     this.destination = destination;
   }
 
+  @NotNull
   public Integer getVacancies() {
     return vacancies;
   }
@@ -50,6 +48,7 @@ public class CreateRideRequest   {
     this.vacancies = vacancies;
   }
 
+  @NotNull
   public String getOriginDescription() {
     return originDescription;
   }

@@ -37,10 +37,10 @@ public class Passenger implements Serializable {
 	@Column(unique=true, nullable=false)
 	private Integer id;
 
-	//bi-directional many-to-one association to Profile
+	//bi-directional many-to-one association to DriverProfile
 	@ManyToOne
 	@JoinColumn(name="profile_id")
-	private Profile profile;
+	private DriverProfile driverProfile;
 
 	//bi-directional many-to-one association to Ride
 	@ManyToOne

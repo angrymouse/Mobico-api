@@ -49,5 +49,5 @@ public class Van implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="profile_id")
-	private Profile profile;
+	private DriverProfile driverProfile;
 }

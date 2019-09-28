@@ -51,7 +51,7 @@ public class DetailedRideResponse   {
 
   @JsonProperty("passengers")
   @Valid
-  private List<ProfileResponse> passengers = null;
+  private List<DriverProfileResponse> passengers = null;
 
   @JsonProperty("originDescription")
   private String originDescription = null;
@@ -250,14 +250,14 @@ public class DetailedRideResponse   {
     this.bag = bag;
   }
 
-  public DetailedRideResponse passengers(List<ProfileResponse> passengers) {
+  public DetailedRideResponse passengers(List<DriverProfileResponse> passengers) {
     this.passengers = passengers;
     return this;
   }
 
-  public DetailedRideResponse addPassengersItem(ProfileResponse passengersItem) {
+  public DetailedRideResponse addPassengersItem(DriverProfileResponse passengersItem) {
     if (this.passengers == null) {
-      this.passengers = new ArrayList<ProfileResponse>();
+      this.passengers = new ArrayList<DriverProfileResponse>();
     }
     this.passengers.add(passengersItem);
     return this;
@@ -269,11 +269,11 @@ public class DetailedRideResponse   {
   **/
   @ApiModelProperty(value = "")
   @Valid
-  public List<ProfileResponse> getPassengers() {
+  public List<DriverProfileResponse> getPassengers() {
     return passengers;
   }
 
-  public void setPassengers(List<ProfileResponse> passengers) {
+  public void setPassengers(List<DriverProfileResponse> passengers) {
     this.passengers = passengers;
   }
 

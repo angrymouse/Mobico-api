@@ -1,10 +1,10 @@
 package br.com.mobico.service;
 
 import br.com.mobico.domain.Account;
-import br.com.mobico.domain.Profile;
+import br.com.mobico.domain.DriverProfile;
 import br.com.mobico.dto.*;
 import br.com.mobico.repository.AccountRepository;
-import br.com.mobico.repository.ProfileRepository;
+import br.com.mobico.repository.DriverProfileRepository;
 import br.com.mobico.security.PasswordEncoder;
 import br.com.mobico.service.exceptions.EmailAlreadyUsedException;
 import br.com.mobico.service.exceptions.ForbiddenAccess;
@@ -23,13 +23,13 @@ public class UserService {
 
 	private final ObjectMapper objectMapper;
 	private final AccountRepository accountRepository;
-	private final ProfileRepository profileRepository;
+	private final DriverProfileRepository driverProfileRepository;
 	private final PasswordEncoder passwordEncoder;
 
-	public UserService(ObjectMapper objectMapper, AccountRepository accountRepository, ProfileRepository profileRepository, PasswordEncoder passwordEncoder) {
+	public UserService(ObjectMapper objectMapper, AccountRepository accountRepository, DriverProfileRepository driverProfileRepository, PasswordEncoder passwordEncoder) {
 		this.objectMapper = objectMapper;
 		this.accountRepository = accountRepository;
-		this.profileRepository = profileRepository;
+		this.driverProfileRepository = driverProfileRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -43,20 +43,20 @@ public class UserService {
 		accountRepository.save(account);
 	}
 	
-	public void updateProfile(@Valid ProfileRequest request, Principal principal) {
+	public void updateProfile(@Valid DriverProfileRequest request, Principal principal) {
 		var account = accountRepository.findByEmail(principal.getName());
-		var profile = objectMapper.convertValue(request, Profile.class);
+		var profile = objectMapper.convertValue(request, DriverProfile.class);
 		profile.setId(account.getId());
-		profileRepository.save(profile);
+		driverProfileRepository.save(profile);
 	}
 	
-	public ProfileResponse getProfile(Principal principal) {
+	public DriverProfileResponse getProfile(Principal principal) {
 		var account = accountRepository.findByEmail(principal.getName()); 
-		return objectMapper.convertValue(profileRepository.findById(account.getId()), ProfileResponse.class);
+		return objectMapper.convertValue(driverProfileRepository.findById(account.getId()), DriverProfileResponse.class);
 	} 
 	
 	public MinimumProfileResponse getProfile(Integer id) throws NotFoundException {
-		var optProfile = profileRepository.findById(id);
+		var optProfile = driverProfileRepository.findById(id);
 		if(optProfile.isEmpty()) {
 			throw new NotFoundException();
 		} else {

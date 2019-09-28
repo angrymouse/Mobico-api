@@ -50,8 +50,8 @@ public class Account implements Serializable {
 	@Column(nullable=false, length=1000)
 	private String password;
 	
-	//bi-directional one-to-one association to Profile
+	//bi-directional one-to-one association to DriverProfile
 	@JsonIgnore
 	@OneToOne(mappedBy="account", fetch=FetchType.LAZY )
-	private Profile profile;
+	private DriverProfile driverProfile;
 }

@@ -1,11 +1,10 @@
 package br.com.mobico.repository;
 
-import java.util.List;
-
+import br.com.mobico.domain.Van;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mobico.domain.Van;
+import java.util.List;
 
 public interface VanRepository extends JpaRepository<Van, Integer> {
-	List<Van> findByActiveTrueAndProfileId(Integer id);
+	List<Van> findByActiveTrueAndDriverProfileId(Integer id);
 }

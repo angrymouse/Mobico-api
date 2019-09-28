@@ -30,7 +30,7 @@ public class VanResponse {
   @JsonProperty("color")
   private String color = null;
 
-  @JsonProperty("profile")
+  @JsonProperty("driverProfile")
   private MinimumProfileResponse profile = null;
 
   public VanResponse id(BigDecimal id) {
@@ -120,8 +120,8 @@ public class VanResponse {
   }
 
   /**
-   * Get profile
-   * @return profile
+   * Get driverProfile
+   * @return driverProfile
   **/
   @ApiModelProperty(value = "")
 
@@ -165,7 +165,7 @@ public class VanResponse {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    plate: ").append(toIndentedString(plate)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
-    sb.append("    profile: ").append(toIndentedString(profile)).append("\n");
+    sb.append("    driverProfile: ").append(toIndentedString(profile)).append("\n");
     sb.append("}");
     return sb.toString();
   }

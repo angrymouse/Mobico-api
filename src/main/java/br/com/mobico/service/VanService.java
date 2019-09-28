@@ -5,7 +5,7 @@ import br.com.mobico.dto.VanRequest;
 import br.com.mobico.dto.VanResponse;
 import br.com.mobico.repository.AccountRepository;
 import br.com.mobico.repository.VanRepository;
-import br.com.mobico.repository.ProfileRepository;
+import br.com.mobico.repository.DriverProfileRepository;
 import br.com.mobico.service.exceptions.ForbiddenAccess;
 import br.com.mobico.service.exceptions.NotFoundException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,14 +21,14 @@ public class VanService {
 	
 	@Autowired private ObjectMapper objectMapper;
 	@Autowired private AccountRepository accountRepository;
-	@Autowired private ProfileRepository profileRepository;
+	@Autowired private DriverProfileRepository driverProfileRepository;
 	@Autowired private VanRepository vanRepository;
 	
 	public VanResponse save(VanRequest vanRequest, Principal principal) {
 		var van = objectMapper.convertValue(vanRequest, Van.class);
 		van.setActive(true);
-		var profile = profileRepository.findByAccountEmail(principal.getName());
-		van.setProfile(profile);
+		var profile = driverProfileRepository.findByAccountEmail(principal.getName());
+		van.setDriverProfile(profile);
 		van.setActive(true);
 		vanRepository.save(van);
 		return objectMapper.convertValue(van, VanResponse.class);
@@ -52,7 +52,7 @@ public class VanService {
 			throw new NotFoundException();
 		} else {
 			var van = optVan.get();
-			if(van.getProfile().getId().intValue() != account.getId().intValue()) {
+			if(van.getDriverProfile().getId().intValue() != account.getId().intValue()) {
 				throw new ForbiddenAccess();
 			}
 			van.setActive(Boolean.FALSE);
@@ -62,7 +62,7 @@ public class VanService {
 	
 	public List<VanResponse> getVansFromUser(Principal user) {
 		var account = accountRepository.findByEmail(user.getName());
-		var vans = vanRepository.findByActiveTrueAndProfileId(account.getId());
+		var vans = vanRepository.findByActiveTrueAndDriverProfileId(account.getId());
 		return objectMapper.convertValue(vans, new TypeReference<List<VanResponse>>(){});
 	}
 	

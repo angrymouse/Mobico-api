@@ -3,8 +3,6 @@ package br.com.mobico.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * CreateRideRequest
  */
@@ -29,8 +27,7 @@ public class CreateRideRequest   {
   public void setOrigin(Integer origin) {
     this.origin = origin;
   }
-
-  @NotNull
+  
   public Integer getDestination() {
     return destination;
   }
@@ -39,7 +36,6 @@ public class CreateRideRequest   {
     this.destination = destination;
   }
 
-  @NotNull
   public Integer getVacancies() {
     return vacancies;
   }
@@ -48,7 +44,6 @@ public class CreateRideRequest   {
     this.vacancies = vacancies;
   }
 
-  @NotNull
   public String getOriginDescription() {
     return originDescription;
   }

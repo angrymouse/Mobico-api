@@ -8,8 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -34,7 +32,7 @@ public class Ride implements Serializable {
 	private Timestamp departureTime;
 
 	@ManyToOne
-	@JoinColumn(name="van_id", nullable=false)
+	@JoinColumn(name="van_id", nullable=true)
 	@Getter @Setter
 	private Van van;
 
@@ -53,21 +51,12 @@ public class Ride implements Serializable {
 	@Column(nullable=false)
 	@Getter @Setter
 	private Integer vacancies;
-
-	@OneToMany(mappedBy="ride", cascade = CascadeType.PERSIST)
-	private List<Passenger> passengers;
 	
 	@Getter @Setter
+	@Column(columnDefinition = "default=true")
 	private Boolean active;
 	
 	@Column(name="origin_description", nullable=true)
 	@Getter @Setter
 	private String originDescription = null;
-
-	public List<Passenger> getPassengers() {
-		if(passengers == null) {
-			passengers = new ArrayList<>();
-		}
-		return passengers;
-	}
 }

@@ -19,6 +19,8 @@ public class RideServiceMapper {
 		ride.setOrigin(localityRepository.findById(rideRequest.getOrigin()).get());
 		ride.setDestination(localityRepository.findById(rideRequest.getDestination()).get());
 		ride.setOriginDescription(rideRequest.getOriginDescription());
+		ride.setVacancies(rideRequest.getVacancies());
+		ride.setActive(Boolean.TRUE);
 		return ride;
 	}
 

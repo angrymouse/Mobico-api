@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 
 /**
@@ -16,9 +15,8 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="ride")
-@NamedQuery(name="Ride.findAll", query="SELECT r FROM Ride r")
 public class Ride implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	@Id
 	@SequenceGenerator(name="RIDE_ID_GENERATOR", sequenceName="ride_id_seq", allocationSize = 1)
@@ -26,10 +24,6 @@ public class Ride implements Serializable {
 	@Column(unique=true, nullable=false)
 	@Getter
 	private Integer id;
-
-	@Column(name="departure_time", nullable=false)
-	@Getter @Setter
-	private Timestamp departureTime;
 
 	@ManyToOne
 	@JoinColumn(name="van_id", nullable=true)
@@ -53,7 +47,6 @@ public class Ride implements Serializable {
 	private Integer vacancies;
 	
 	@Getter @Setter
-	@Column(columnDefinition = "default=true")
 	private Boolean active;
 	
 	@Column(name="origin_description", nullable=true)

@@ -1,29 +1,15 @@
 package br.com.mobico.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
-import lombok.Getter;
-import lombok.Setter;
 
 
 /**
@@ -74,44 +60,14 @@ public class Ride implements Serializable {
 	@Getter @Setter
 	private Boolean active;
 	
-	@Getter @Setter
-	private Boolean food;
-	
-	@Getter @Setter
-	private Boolean drink;
-	
-	@Getter @Setter
-	private Boolean animal;
-
-	@Getter @Setter
-	private Boolean bag;
-	
 	@Column(name="origin_description", nullable=true)
 	@Getter @Setter
 	private String originDescription = null;
-	
-	private void deduceVacancy() {
-		this.vacancies--;
-	}
-	
-	private void freeVacancy() {
-		this.vacancies++;
-	}
 
 	public List<Passenger> getPassengers() {
 		if(passengers == null) {
-			passengers = new ArrayList<Passenger>();
+			passengers = new ArrayList<>();
 		}
 		return passengers;
-	}
-	
-	public void addPassenger(Passenger passenger) {
-		passenger.setRide(this);
-		getPassengers().add(passenger);
-		deduceVacancy();
-	}
-	public void removePassenger(Passenger passenger) {
-		getPassengers().removeIf(x -> x == passenger);
-		freeVacancy();
 	}
 }

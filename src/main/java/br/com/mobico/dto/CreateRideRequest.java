@@ -22,10 +22,6 @@ public class CreateRideRequest   {
   @NotNull
   private Integer vacancies = null;
 
-  @JsonProperty("vanId")
-  @NotNull
-  private Integer vanId = null;
-
   @JsonProperty("originDescription")
   @NotNull
   private String originDescription = null;
@@ -52,14 +48,6 @@ public class CreateRideRequest   {
 
   public void setVacancies(Integer vacancies) {
     this.vacancies = vacancies;
-  }
-
-  public Integer getVanId() {
-    return vanId;
-  }
-
-  public void setVanId(Integer vanId) {
-    this.vanId = vanId;
   }
 
   public String getOriginDescription() {

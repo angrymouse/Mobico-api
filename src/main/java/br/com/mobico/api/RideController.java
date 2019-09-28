@@ -34,13 +34,9 @@ public class RideController {
     @PostMapping(value = "ride", consumes = "application/json")
     public ResponseEntity saveRide(@Valid CreateRideRequest body) {
         Ride ride = null;
-        try {
-            ride = rideServiceMapper.mapToRide(body);
-            rideRepository.save(ride);
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (NotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        ride = rideServiceMapper.mapToRide(body);
+        rideRepository.save(ride);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "ride", produces = "application/json")

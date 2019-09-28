@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -40,7 +41,7 @@ public class RideController {
     ObjectMapper objectMapper;
 
     @PostMapping(value = "ride", consumes = "application/json")
-    public ResponseEntity saveRide(@Valid CreateRideRequest body) {
+    public ResponseEntity saveRide(@RequestBody @Valid CreateRideRequest body) {
         Ride ride = null;
         ride = rideServiceMapper.mapToRide(body);
         rideRepository.save(ride);

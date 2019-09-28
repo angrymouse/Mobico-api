@@ -50,9 +50,13 @@ public class UserService {
 		driverProfileRepository.save(profile);
 	}
 	
-	public DriverProfileResponse getProfile(Principal principal) {
-		var account = accountRepository.findByEmail(principal.getName()); 
-		return objectMapper.convertValue(driverProfileRepository.findById(account.getId()), DriverProfileResponse.class);
+	public DriverProfileResponse getProfile(Principal principal) throws NotFoundException {
+		var account = accountRepository.findByEmail(principal.getName());
+		var profile = driverProfileRepository.findById(account.getId());
+		if(profile == null) {
+			throw new NotFoundException();
+		}
+		return objectMapper.convertValue(profile, DriverProfileResponse.class);
 	} 
 	
 	public MinimumProfileResponse getProfile(Integer id) throws NotFoundException {

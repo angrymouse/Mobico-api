@@ -31,7 +31,7 @@ public class RideController {
     @Autowired
     ObjectMapper objectMapper;
 
-    @PostMapping(value = "ride", consumes = "application/json")
+    @PostMapping(value = "rides", consumes = "application/json")
     public ResponseEntity saveRide(@Valid CreateRideRequest body) {
         Ride ride = null;
         try {

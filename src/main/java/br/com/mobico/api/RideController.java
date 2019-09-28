@@ -31,7 +31,7 @@ public class RideController {
     @Autowired
     ObjectMapper objectMapper;
 
-    @PostMapping(value = "rides", consumes = "application/json")
+    @PostMapping(value = "ride", consumes = "application/json")
     public ResponseEntity saveRide(@Valid CreateRideRequest body) {
         Ride ride = null;
         try {
@@ -43,7 +43,7 @@ public class RideController {
         }
     }
 
-    @GetMapping(value = "rides", produces = "application/json")
+    @GetMapping(value = "ride", produces = "application/json")
     public ResponseEntity<List<RideResponse>> getRides() {
         return objectMapper.convertValue(rideRepository.findAll(), new TypeReference<List<RideResponse>>(){});
     }

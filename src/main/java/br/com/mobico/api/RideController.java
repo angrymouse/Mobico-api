@@ -41,6 +41,7 @@ public class RideController {
 
     @GetMapping(value = "ride", produces = "application/json")
     public ResponseEntity<List<RideResponse>> getRides() {
-        return objectMapper.convertValue(rideRepository.findAll(), new TypeReference<List<RideResponse>>(){});
+        var rides = objectMapper.convertValue(rideRepository.findAll(), new TypeReference<List<RideResponse>>(){});
+        return new ResponseEntity(rides, HttpStatus.OK);
     }
 }

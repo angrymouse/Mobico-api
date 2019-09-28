@@ -1,7 +1,7 @@
 package br.com.mobico.api;
 
-import br.com.mobico.domain.Locality;
-import br.com.mobico.repository.LocalityRepository;
+import br.com.mobico.dto.Locality;
+import br.com.mobico.service.LocalityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import java.util.List;
 public class LocalityController {
 
     @Autowired
-    private LocalityRepository localityRepository;
+    private LocalityService localityService;
 
     @GetMapping("localities")
     public ResponseEntity<List<Locality>> localityGet() {
-        return new ResponseEntity(localityRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity(localityService.find(), HttpStatus.OK);
     }
 }
